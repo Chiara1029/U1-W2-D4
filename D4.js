@@ -29,15 +29,17 @@ console.log(crazySum(3,3))
  Deve inoltre tornare la differenza assoluta moltiplicata per tre qualora il numero fornito sia maggiore di 19.
 */
 
-function crazyDiff (num1){
-    const totalDiff = num1-19
-    if(num1>19){
-        return totalDiff*3 //cerca DIFFERENZA ASSOLUTA 
-    } else if (num1<19){
-        return totalSum
-    }
-}
-console.log(crazyDiff(57))
+// function crazyDiff (num1){
+//     const totalDiff = num1-19
+//     if(num1>19){
+//         return totalDiff*3
+//     } else if (num1<19){
+//         return totalSum
+//     }
+// }
+// console.log(crazyDiff(57))
+
+//MATH.ABS
 
 /* ESERCIZIO 4
  Scrivi una funzione di nome "boundary" che accetta un numero intero n come parametro, e ritorna true se n è compreso tra 20 e 100 (incluso) oppure
@@ -63,16 +65,14 @@ console.log(boundary(450))
 */
 
 
-const testText = "Epicode è bellissimo"
-
-function epify (finalTestText){
-    if(testText.startsWith("Epicode")){
-        return testText
+const epify = function (finalTestText){
+    if(finalTestText.startsWith("Epicode")){
+        return finalTestText
     } else {
-        return testText.join(0,"Epicode")
+        return "Epicode".concat(finalTestText)
     }
 }
-console.log(epify())
+console.log(epify(" Hello"))
 
 
 
@@ -82,39 +82,44 @@ console.log(epify())
 */
 
 function check3and7 (numPos){
-    if(numPos % 3 === 0){
-        return "è multiplo di 3"
-    } else if (numPos % 7 === 0){
-        return "è multiplo di 7"
-    }
+    return numPos%3===0 || numPos%7===0
+    // if(numPos % 3 === 0){
+    //     return "è multiplo di 3"
+    // } else if (numPos % 7 === 0){
+    //     return "è multiplo di 7"
+    // }
 }
 console.log(check3and7(49))
 
+
 /* ESERCIZIO 7
- Scrivi una funzione di nome "reverseString", il cui scopo è invertire 
- una stringa fornita come parametro (es. "EPICODE" --> "EDOCIPE")
+ Scrivi una funzione di nome "reverseString", il cui scopo è invertire una stringa fornita come parametro (es. "EPICODE" --> "EDOCIPE")
 */
 
-const normText = "EPICODE"
-
-function reverseString(reverseText) {
-    reverseText = normText.replace("PICOD", "DOCIP")
-    return reverseText
+const reverseString = function (str) {
+    let splitString = str.split("")
+    let reverseArray = splitString.reverse() 
+    let joinArray = reverseArray.join("")
+    return joinArray
 }
-console.log(reverseString())
+console.log(reverseString("EPICODE"))
 
 /* ESERCIZIO 8
  Scrivi una funzione di nome "upperFirst", che riceve come parametro una stringa formata da diverse parole.
  La funzione deve rendere maiuscola la prima lettera di ogni parola contenuta nella stringa.
 */
 
-const lowerText = "Luke, sono tuo padre"
+let lowerText = "Luke, sono tuo padre"
 
 function upperFirst (upperText){
-    upperText = lowerText.replaceAll("sono", "Sono", "tuo", "Tuo", "padre", "Padre")
+    let lowerArr = lowerText.split(" ")
+    for(let i=0; i<lowerArr.length; i++){
+        lowerArr[i]= lowerArr[i].replace(lowerArr[i].charAt(0), lowerArr[i].charAt(0).toUpperCase())
+    }
+    upperText = lowerArr.join(" ")
     return upperText
 }
-console.log(upperFirst())
+console.log(upperFirst("Luke, sono tuo padre"))
 
 
 
@@ -133,18 +138,15 @@ console.log(cutString())
 
 
 /* ESERCIZIO 10
- Scrivi una funzione di nome "giveMeRandom", che accetta come parametro un numero n e ritorna un'array 
- contenente n numeri casuali inclusi tra 0 e 10.
+ Scrivi una funzione di nome "giveMeRandom", che accetta come parametro un numero n e ritorna un'array contenente n numeri casuali inclusi tra 0 e 10.
 */
 
-let n= 5
 
 function giveMeRandom (n){
-    min = Math.ceil(0);
-    max = Math.floor(10);
-    n
-    return Math.floor(Math.random(0,10) * (max - min + 1) + min);
-
-    //return Math.floor(Math.random(0.10) * n)
+    let randomArr = []
+    for(let i = 0; i<n; i++){
+        randomArr.push(Math.floor(Math.random() * 10))
+    }
+    return randomArr
 }
-console.log(giveMeRandom(n))
+console.log(giveMeRandom(5))
